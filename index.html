@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okaidi Syria — Market Study & Business Plan | NDS Investment</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0c0c0c;
+    --surface: #141414;
+    --surface2: #1a1a1a;
+    --border: #222;
+    --text: #e0e0e0;
+    --text2: #999;
+    --text3: #666;
+    --gold: #c8a96e;
+    --gold-dim: rgba(200,169,110,0.15);
+    --green: #4ade80;
+    --green-dim: rgba(74,222,128,0.15);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,0.15);
+    --blue: #60a5fa;
+    --blue-dim: rgba(96,165,250,0.15);
+    --orange: #fb923c;
+    --orange-dim: rgba(251,146,60,0.15);
+    --purple: #a78bfa;
+  }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 30px 0;
+    overflow-y: auto;
+    z-index: 100;
+    font-size: 13px;
+  }
+  .nav-brand {
+    padding: 0 24px 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .nav-brand h3 {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .nav-brand p {
+    font-size: 11px;
+    color: var(--text3);
+  }
+  .nav a {
+    display: block;
+    padding: 8px 24px;
+    color: var(--text2);
+    text-decoration: none;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+  }
+  .nav a:hover, .nav a.active {
+    color: var(--gold);
+    background: var(--gold-dim);
+    border-left-color: var(--gold);
+  }
+  .nav .nav-section {
+    padding: 16px 24px 6px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text3);
+    font-weight: 600;
+  }
+
+  /* MOBILE NAV */
+  .nav-close { display: none; }
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 200;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-size: 24px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 90;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* MAIN */
+  .main {
+    margin-left: 260px;
+    max-width: 1100px;
+    padding: 40px 60px 120px;
+  }
+
+  /* COVER */
+  .cover {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 60px;
+  }
+  .cover .tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .cover .sub {
+    font-size: 18px;
+    color: var(--text2);
+    font-weight: 300;
+    margin-bottom: 30px;
+    max-width: 800px;
+  }
+  .cover .meta {
+    font-size: 13px;
+    color: var(--text3);
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 80px;
+    scroll-margin-top: 20px;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 30px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(200,169,110,0.12);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 36px 0 14px;
+    color: var(--text);
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 24px 0 10px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text2);
+    margin-bottom: 14px;
+    max-width: 800px;
+  }
+  p strong { color: var(--text); }
+
+  ul.text-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+  ul.text-list li {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text2);
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  ul.text-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* CARDS & GRIDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 20px 0 30px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+  }
+  .card-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .card-label {
+    font-size: 12px;
+    color: var(--text3);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .card-sub {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 8px;
+  }
+
+  /* CHART CONTAINERS */
+  .chart-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 20px 0 30px;
+    position: relative;
+  }
+  .chart-container canvas {
+    max-height: 360px;
+  }
+  .chart-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .chart-source {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 12px;
+  }
+  .two-chart {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0 30px;
+  }
+
+  /* TABLE SCROLL WRAPPER */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0 24px;
+    border-radius: 6px;
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text2);
+  }
+  .row-highlight td {
+    color: var(--gold);
+    font-weight: 600;
+    background: var(--gold-dim);
+  }
+
+  /* SWOT */
+  .swot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 20px 0 30px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .swot-cell {
+    padding: 28px;
+    min-height: 200px;
+  }
+  .swot-cell h4 {
+    margin: 0 0 14px;
+    font-size: 14px;
+  }
+  .swot-cell ul {
+    list-style: none;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .swot-cell ul li::before {
+    margin-right: 8px;
+    font-weight: 700;
+  }
+  .swot-s { background: rgba(74,222,128,0.06); }
+  .swot-s h4 { color: var(--green); }
+  .swot-s li::before { content: '▲'; color: var(--green); }
+  .swot-w { background: rgba(248,113,113,0.06); }
+  .swot-w h4 { color: var(--red); }
+  .swot-w li::before { content: '▼'; color: var(--red); }
+  .swot-o { background: rgba(96,165,250,0.06); }
+  .swot-o h4 { color: var(--blue); }
+  .swot-o li::before { content: '◆'; color: var(--blue); }
+  .swot-t { background: rgba(251,146,60,0.06); }
+  .swot-t h4 { color: var(--orange); }
+  .swot-t li::before { content: '⚠'; color: var(--orange); }
+
+  /* BADGES */
+  .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:0.5px; }
+  .b-high { background:var(--red-dim); color:var(--red); }
+  .b-mod { background:var(--orange-dim); color:var(--orange); }
+  .b-low { background:var(--green-dim); color:var(--green); }
+  .b-blue { background:var(--blue-dim); color:var(--blue); }
+  .b-vhigh { background: rgba(248,113,113,0.25); color: #ff9999; }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--gold-dim);
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0 30px;
+  }
+  .callout p { color: var(--text); margin: 0; }
+  .callout-blue {
+    background: var(--blue-dim);
+    border-left-color: var(--blue);
+  }
+
+  /* LOCATION CARD */
+  .location-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 20px 0;
+  }
+  .location-card h4 {
+    margin-top: 0;
+  }
+  .location-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+
+  /* ===== RESPONSIVE — TABLET ===== */
+  @media (max-width: 900px) {
+    .nav {
+      position: fixed;
+      top: 0;
+      right: -280px;
+      left: auto;
+      width: 280px;
+      height: 100vh;
+      border-right: none;
+      border-left: 1px solid var(--border);
+      transition: right 0.3s ease;
+      z-index: 150;
+    }
+    .nav.open { right: 0; }
+    .nav-close {
+      display: block;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text2);
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .nav a {
+      padding: 12px 24px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      border-left: none;
+      border-right: 2px solid transparent;
+    }
+    .nav a:hover, .nav a.active {
+      border-left-color: transparent;
+      border-right-color: var(--gold);
+    }
+    .hamburger { display: flex; }
+    .nav-overlay.active { display: block; }
+    .main { margin-left: 0; padding: 20px 24px 80px; }
+    .cover { padding: 50px 0 40px; margin-bottom: 40px; }
+    .cover h1 { font-size: 30px; }
+    .cover .sub { font-size: 16px; }
+    .section { margin-bottom: 50px; }
+    .section-header { flex-wrap: wrap; gap: 8px 16px; margin-bottom: 20px; }
+    .section-num { font-size: 36px; }
+    .section-header h2 { font-size: 22px; }
+    h3 { font-size: 17px; margin: 28px 0 12px; }
+    .card-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .card { padding: 18px; }
+    .card-value { font-size: 26px; }
+    .two-chart { grid-template-columns: 1fr; }
+    .chart-container canvas { max-height: 300px; }
+    .swot { grid-template-columns: 1fr; }
+    .swot-cell { padding: 20px; min-height: auto; }
+  }
+
+  /* ===== RESPONSIVE — SMALL PHONE ===== */
+  @media (max-width: 520px) {
+    .main { padding: 16px 16px 80px; }
+    body { font-size: 14px; }
+    p { font-size: 14px; }
+    .cover { padding: 40px 0 30px; margin-bottom: 30px; }
+    .cover h1 { font-size: 24px; letter-spacing: -0.5px; }
+    .cover .sub { font-size: 14px; margin-bottom: 20px; }
+    .cover .meta { font-size: 12px; }
+    .section { margin-bottom: 40px; }
+    .section-header { margin-bottom: 16px; padding-bottom: 12px; }
+    .section-num { font-size: 28px; }
+    .section-header h2 { font-size: 20px; }
+    h3 { font-size: 16px; margin: 24px 0 10px; }
+    h4 { font-size: 13px; }
+    .card-grid { grid-template-columns: 1fr; gap: 10px; }
+    .card { padding: 16px; }
+    .card-value { font-size: 24px; }
+    .card-label { font-size: 11px; }
+    .chart-container { padding: 16px; margin: 14px 0 20px; }
+    .chart-container canvas { max-height: 280px; }
+    .chart-title { font-size: 12px; }
+    .chart-source { font-size: 10px; }
+    .two-chart { gap: 12px; margin: 14px 0 20px; }
+    .table-wrap { margin: 12px -16px 20px; border-radius: 0; }
+    table { font-size: 12px; min-width: 500px; }
+    th { padding: 10px 12px; font-size: 10px; }
+    td { padding: 9px 12px; }
+    .callout { padding: 16px 18px; margin: 16px 0 24px; }
+    .callout p { font-size: 14px; }
+    .swot-cell { padding: 16px; }
+    .swot-cell ul { font-size: 13px; }
+    .swot-cell h4 { font-size: 13px; }
+  }
+
+  @media print {
+    .nav { display: none; }
+    .hamburger { display: none; }
+    .main { margin-left: 0; }
+    body { background: #fff; color: #111; }
+    .card, .chart-container, .location-card { border-color: #ddd; background: #fafafa; }
+    .card-value { color: #8B6914; }
+    th { color: #8B6914; background: #f5f0eb; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HAMBURGER BUTTON -->
+<button class="hamburger" id="navToggle" aria-label="Open navigation">☰</button>
+
+<!-- NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- SIDEBAR NAV -->
+<nav class="nav" id="navSidebar">
+  <button class="nav-close" id="navClose" aria-label="Close navigation">✕</button>
+  <div class="nav-brand">
+    <h3>NDS Investment</h3>
+    <p>Okaidi Syria — Business Plan</p>
+  </div>
+  <div class="nav-section">Market Research</div>
+  <a href="#s01">01. Macro Economy</a>
+  <a href="#s02">02. Demographics &amp; Consumer</a>
+  <a href="#s03">03. Retail Market Analysis</a>
+  <a href="#s04">04. Kids Fashion Demand</a>
+  <a href="#s05">05. Competitive Landscape</a>
+  <a href="#s06">06. SWOT Analysis</a>
+  <div class="nav-section">Strategy &amp; Rollout</div>
+  <a href="#s07">07. Store Locations</a>
+  <a href="#s08">08. Roll-Out Plan</a>
+  <a href="#s09">09. Supply Chain &amp; Logistics</a>
+  <div class="nav-section">Financials</div>
+  <a href="#s10">10. Financial Projections</a>
+  <a href="#s11">11. Unit Economics</a>
+  <a href="#s12">12. Revenue &amp; Sensitivity</a>
+  <div class="nav-section">Risk &amp; Execution</div>
+  <a href="#s13">13. Risk Assessment</a>
+  <a href="#s14">14. Implementation Timeline</a>
+  <a href="#s15">15. Sources &amp; References</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="tag">Market Study &amp; Business Plan</div>
+  <h1>Strategic Expansion of Okaidi<br>into the Syrian Arab Republic</h1>
+  <div class="sub">Comprehensive market-entry study, financial projections, and operational plan for Okaidi franchise operations across Syria — Kids fashion segment.</div>
+  <div class="meta">
+    Prepared by NDS Investment / Samha Group — May 2026 (v2)<br>
+    Confidential
+  </div>
+  <div class="card-grid" style="margin-top:40px;">
+    <div class="card">
+      <div class="card-value">6 Stores</div>
+      <div class="card-label">Across 4 Syrian Cities</div>
+      <div class="card-sub">Kids-only format, 100–120 sqm</div>
+    </div>
+    <div class="card">
+      <div class="card-value">620 sqm</div>
+      <div class="card-label">Total Retail Space</div>
+      <div class="card-sub">Network footprint at maturity</div>
+    </div>
+    <div class="card">
+      <div class="card-value">$2.55M</div>
+      <div class="card-label">Revenue @ Maturity</div>
+      <div class="card-sub">2031 annual run-rate</div>
+    </div>
+    <div class="card">
+      <div class="card-value">Aug 2027</div>
+      <div class="card-label">First Opening</div>
+      <div class="card-sub">Galleria Hijaz, Damascus</div>
+    </div>
+    <div class="card">
+      <div class="card-value">$163–179K</div>
+      <div class="card-label">CAPEX per Store</div>
+      <div class="card-sub">Excl. initial inventory (TBD)</div>
+    </div>
+    <div class="card">
+      <div class="card-value">$994K</div>
+      <div class="card-label">Total Network CAPEX</div>
+      <div class="card-sub">Deployed 2027–2030</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 01. MACRO ECONOMY -->
+<!-- ============================================================ -->
+<div class="section" id="s01">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <h2>Syria Macro Economy</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-value">$830</div>
+      <div class="card-label">GNI per Capita (2024)</div>
+      <div class="card-sub">Down from $2,731 pre-war</div>
+    </div>
+    <div class="card">
+      <div class="card-value">~10%</div>
+      <div class="card-label">GDP Growth 2026</div>
+      <div class="card-sub">Recovery from -1.5% in 2024</div>
+    </div>
+    <div class="card">
+      <div class="card-value">May '25</div>
+      <div class="card-label">EU/US Sanctions Lifted</div>
+      <div class="card-sub">SWIFT reactivated Jun 2025</div>
+    </div>
+    <div class="card">
+      <div class="card-value">Jan '26</div>
+      <div class="card-label">Currency Redenomination</div>
+      <div class="card-sub">New SYP: 100 old = 1 new</div>
+    </div>
+  </div>
+
+  <h3>GDP Growth Trajectory (2010–2026)</h3>
+  <div class="chart-container">
+    <canvas id="gdpChart"></canvas>
+    <div class="chart-source">Source: World Bank, IMF, Bloomberg. 2026 projection based on recovery estimates.</div>
+  </div>
+
+  <h3>Inflation & Exchange Rate Normalization</h3>
+  <div class="two-chart">
+    <div class="chart-container">
+      <div class="chart-title">Annual Inflation Rate (%)</div>
+      <canvas id="inflationChart"></canvas>
+      <div class="chart-source">Source: FocusEconomics, World Bank, Central Bank of Syria</div>
+    </div>
+    <div class="chart-container">
+      <div class="chart-title">Exchange Rate — SYP/USD (Old SYP)</div>
+      <canvas id="fxChart"></canvas>
+      <div class="chart-source">Pre-war 47 → peaked 14,750 → redenomination Jan '26 → ~115 new SYP</div>
+    </div>
+  </div>
+
+  <h3>Sanctions Timeline — The Unlock</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Date</th><th>Actor</th><th>Action</th><th>Impact</th></tr>
+    <tr><td>Dec 8, 2024</td><td>—</td><td>Assad regime collapses</td><td>Political transition begins</td></tr>
+    <tr><td>May 13, 2025</td><td>US</td><td>Trump announces sanction cessation</td><td>Trade barriers begin falling</td></tr>
+    <tr><td>May 20–28, 2025</td><td>EU</td><td>Majority of economic sanctions lifted</td><td>Trade, investment, banking opened</td></tr>
+    <tr><td>May 23, 2025</td><td>US (OFAC)</td><td>General License 25 issued</td><td>Most restrictions removed</td></tr>
+    <tr class="row-highlight"><td>Jun 19, 2025</td><td>SWIFT</td><td>Syria reactivated</td><td>First int'l bank transfer in 14 yrs</td></tr>
+    <tr><td>Jun 30, 2025</td><td>US</td><td>Executive Order formalizing</td><td>Legal framework solidified</td></tr>
+    <tr><td>Oct 2025</td><td>Syria</td><td>Parliament appointed</td><td>Governance institutionalized</td></tr>
+    <tr class="row-highlight"><td>Dec 4, 2025</td><td>Visa</td><td>Agreement with Central Bank of Syria</td><td>Digital payment infrastructure incoming</td></tr>
+    <tr><td>Jan 1, 2026</td><td>Syria</td><td>Currency redenomination</td><td>Monetary confidence signal</td></tr>
+    <tr><td>Jan 2026</td><td>EU</td><td>Von der Leyen visits, €620M pledged</td><td>International commitment</td></tr>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>Assessment:</strong> For kids fashion retail franchising, sanctions are no longer a barrier. Remaining restrictions apply only to Assad-linked individuals/entities and certain dual-use exports — neither relevant to an Okaidi franchise operation.</p>
+  </div>
+
+  <h3>Banking & Financial System Status</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Capability</th><th>Status</th><th>Timeline</th></tr>
+    <tr><td>SWIFT / International transfers</td><td><span class="badge b-low">ACTIVE</span></td><td>Live since Jun 2025</td></tr>
+    <tr><td>Card payments (Visa)</td><td><span class="badge b-mod">IN PROGRESS</span></td><td>12–18 months</td></tr>
+    <tr><td>Domestic POS terminals</td><td><span class="badge b-mod">LIMITED</span></td><td>12–24 months</td></tr>
+    <tr><td>E-wallets (Sham Cash)</td><td><span class="badge b-low">ACTIVE</span></td><td>Gov't sector only currently</td></tr>
+    <tr><td>Cash economy reliance</td><td><span class="badge b-high">DOMINANT</span></td><td>Cash-first POS required</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 02. DEMOGRAPHICS & CONSUMER — KIDS FOCUS -->
+<!-- ============================================================ -->
+<div class="section" id="s02">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <h2>Demographics &amp; Consumer — Kids Focus</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-value">23.8</div>
+      <div class="card-label">Median Age</div>
+      <div class="card-sub">Exceptionally young market</div>
+    </div>
+    <div class="card">
+      <div class="card-value">~40%</div>
+      <div class="card-label">Population Under 15</div>
+      <div class="card-sub">Core kids fashion demand</div>
+    </div>
+    <div class="card">
+      <div class="card-value">7.6–9.2M</div>
+      <div class="card-label">Children Aged 0–14</div>
+      <div class="card-sub">Okaidi target age range</div>
+    </div>
+    <div class="card">
+      <div class="card-value">215K+</div>
+      <div class="card-label">Target Households</div>
+      <div class="card-sub">5% upper-middle, Damascus</div>
+    </div>
+  </div>
+
+  <h3>Population by Major City</h3>
+  <div class="chart-container">
+    <canvas id="popChart"></canvas>
+    <div class="chart-source">Source: World Population Review, UN Population Division 2026</div>
+  </div>
+
+  <h3>Consumer Purchasing Power</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Metric</th><th>Value</th><th>Notes</th></tr>
+    <tr><td>Minimum wage (monthly)</td><td>$50–75</td><td>After 200–550% increase in 2025</td></tr>
+    <tr><td>Average private sector salary</td><td>$150–500</td><td>Heavily skewed by sector</td></tr>
+    <tr><td>Monthly family expenditure (5 persons)</td><td>~$625</td><td>Most supplement via remittances</td></tr>
+    <tr><td>Avg. annual kids' clothing spend per child</td><td>$80–150</td><td>Upper-middle class</td></tr>
+    <tr class="row-highlight"><td>Upper-middle class (Damascus)</td><td>~5% of metro</td><td>~215,000 individuals</td></tr>
+    <tr><td>Returning diaspora households</td><td>Growing</td><td>Higher per-child spend, brand-aware</td></tr>
+  </table>
+  </div>
+
+  <div class="callout-blue callout">
+    <p><strong>Target customer profile:</strong> Upper-middle-class families and the returning diaspora — parents who lived in Turkey, the Gulf, or Europe and know brands like Okaidi, Mothercare, and Zara Kids from firsthand experience. Wedding seasons, Eid, and back-to-school create predictable demand peaks. Multi-child households (Syrian average ~3 children per family) drive basket size above MENA norms.</p>
+  </div>
+
+  <h3>Age Distribution — Syria vs. Regional</h3>
+  <div class="chart-container">
+    <canvas id="ageChart"></canvas>
+    <div class="chart-source">Source: UN Population Division. Syria's youth bulge is a structural demand driver for kids fashion retail.</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 03. RETAIL MARKET ANALYSIS -->
+<!-- ============================================================ -->
+<div class="section" id="s03">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <h2>Retail Market Analysis</h2>
+  </div>
+
+  <p>Syria's retail sector is in early-stage recovery. The pre-2011 nascent modern retail scene was largely destroyed or frozen during 14 years of conflict. Current state: predominantly traditional retail (souks, independent shops), with modern retail concentrated in Damascus. <strong>The kids fashion category is almost entirely served by informal/parallel imports and unbranded local manufacturers</strong> — a structural gap Okaidi is uniquely positioned to fill.</p>
+
+  <h3>Major Malls in Damascus</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Mall</th><th>Location</th><th>Est. GLA (sqm)</th><th>Position</th><th>Status</th></tr>
+    <tr class="row-highlight"><td><strong>Galleria Hijaz</strong></td><td>City Center</td><td>Major (TBD)</td><td>Premium</td><td>Under construction — NDS-owned</td></tr>
+    <tr><td>Town Center</td><td>Sahnaya</td><td>45,000</td><td>Largest existing</td><td>Operational</td></tr>
+    <tr><td>Cham City Center</td><td>Kafr Sousa</td><td>~15,000</td><td>Popular / Mid</td><td>Operational</td></tr>
+    <tr><td>Damasquino Mall</td><td>Kafr Sousa</td><td>~10,000</td><td>F&B / Social</td><td>Operational</td></tr>
+    <tr><td>Mazza Mall</td><td>Mazza</td><td>~12,000</td><td>Modern / Upmarket</td><td>Operational</td></tr>
+    <tr><td>Qasioun Mall</td><td>Barzeh</td><td>~8,000</td><td>Community</td><td>Operational</td></tr>
+    <tr><td>Up Town Complex</td><td>Dummar</td><td>~12,000</td><td>Newest</td><td>Operational</td></tr>
+  </table>
+  </div>
+
+  <h3>International Kids Fashion Brands — Presence in Syria (May 2026)</h3>
+  <div class="chart-container">
+    <div class="chart-title">Official Store Count — International Kids Fashion Brands</div>
+    <canvas id="brandPresenceChart"></canvas>
+    <div class="chart-source">Zero. No international kids fashion brand has an official presence in Syria. Okaidi enters a category vacuum.</div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Zero formal kids fashion brand presence.</strong> The mid-premium kids segment — between cheap Turkish parallel imports and inaccessible luxury — has no official players. Okaidi enters not against competitors but into a category vacuum.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 04. KIDS FASHION DEMAND -->
+<!-- ============================================================ -->
+<div class="section" id="s04">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <h2>Kids Fashion Demand</h2>
+  </div>
+
+  <p>Kids fashion demand in Syria is structurally driven by demographic and cultural factors that exceed regional benchmarks.</p>
+
+  <h3>Demand Drivers</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Driver</th><th>Intensity</th><th>Explanation</th></tr>
+    <tr><td>Demographic — under 15 share</td><td><span class="badge b-vhigh">VERY HIGH</span></td><td>~40% vs. MENA avg ~28%</td></tr>
+    <tr><td>Wedding season uplift</td><td><span class="badge b-vhigh">VERY HIGH</span></td><td>Children dressed formally; 2–3× volume peaks</td></tr>
+    <tr><td>Eid (×2 per year)</td><td><span class="badge b-vhigh">VERY HIGH</span></td><td>New outfits expected; gift-giving culture</td></tr>
+    <tr><td>Back-to-school</td><td><span class="badge b-high">HIGH</span></td><td>Sep peak; uniform &amp; casual wear</td></tr>
+    <tr><td>Diaspora brand exposure</td><td><span class="badge b-high">HIGH</span></td><td>Returning families know brand from abroad</td></tr>
+    <tr><td>Multi-child households</td><td><span class="badge b-high">HIGH</span></td><td>Avg ~3 children → larger basket per visit</td></tr>
+    <tr><td>Local brand void</td><td><span class="badge b-vhigh">VERY HIGH</span></td><td>No formal mid-premium kids retailer in Syria</td></tr>
+  </table>
+  </div>
+
+  <h3>Seasonal Revenue Index (100 = Annual Average)</h3>
+  <div class="chart-container">
+    <canvas id="seasonChart"></canvas>
+    <div class="chart-source">Based on comparable markets (Iraq, Jordan, Egypt). Eid (May), back-to-school (Sep), year-end (Dec) drive 25–40% above-average peaks.</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 05. COMPETITIVE LANDSCAPE -->
+<!-- ============================================================ -->
+<div class="section" id="s05">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <h2>Competitive Landscape</h2>
+  </div>
+
+  <h3>Kids Fashion Brands — Syria Positioning</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Brand / Category</th><th>Official Stores</th><th>Availability</th><th>Price Tier</th><th>Quality Perception</th></tr>
+    <tr class="row-highlight"><td><strong>Okaidi (France)</strong></td><td>→ First</td><td>Official franchise</td><td>$$ Mid-Premium</td><td>High (diaspora-known)</td></tr>
+    <tr><td>Mothercare</td><td>0</td><td>Parallel imports</td><td>$$$ Premium</td><td>High but unaffordable</td></tr>
+    <tr><td>Zara Kids</td><td>0</td><td>Personal shoppers only</td><td>$$$ Premium</td><td>Very high</td></tr>
+    <tr><td>H&M Kids</td><td>0</td><td>Limited informal</td><td>$$ Mid</td><td>Good</td></tr>
+    <tr><td>LC Waikiki Kids</td><td>0</td><td>Informal imports</td><td>$ Budget</td><td>Acceptable</td></tr>
+    <tr><td>DeFacto / Koton Kids</td><td>0</td><td>Informal imports</td><td>$ Budget</td><td>Moderate</td></tr>
+    <tr><td>Local kids brands</td><td>Many</td><td>Own shops/malls</td><td>$ Budget</td><td>Basic</td></tr>
+    <tr><td>Souk / unbranded</td><td>Many</td><td>Traditional retail</td><td>$ Budget</td><td>Variable</td></tr>
+  </table>
+  </div>
+
+  <h3>Informal Market Pricing Comparison (USD)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Item</th><th>Turkish Informal ($)</th><th>Chinese Informal ($)</th><th>Okaidi Target ($)</th></tr>
+    <tr><td>T-shirt (basic)</td><td>5–10</td><td>3–6</td><td>12–18</td></tr>
+    <tr><td>Denim (jeans)</td><td>12–20</td><td>8–14</td><td>22–32</td></tr>
+    <tr><td>Dress / outfit set</td><td>15–25</td><td>10–18</td><td>30–45</td></tr>
+    <tr><td>Outerwear (jacket)</td><td>25–45</td><td>15–30</td><td>45–75</td></tr>
+    <tr><td>Shoes (sneakers)</td><td>15–30</td><td>10–20</td><td>30–50</td></tr>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>Okaidi occupies the only empty tier</strong> — not competitive entry, but category creation in kids fashion. Positioned at premium to informal but below imported Western premium.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 06. SWOT ANALYSIS -->
+<!-- ============================================================ -->
+<div class="section" id="s06">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <h2>SWOT Analysis</h2>
+  </div>
+
+  <div class="swot">
+    <div class="swot-cell swot-s">
+      <h4>STRENGTHS</h4>
+      <ul>
+        <li>First-mover — zero formal kids fashion competitors</li>
+        <li>Demographic tailwind — 40% under 15</li>
+        <li>NDS owns Galleria Hijaz — no landlord risk</li>
+        <li>Turkey proximity — Okaidi already operates there</li>
+        <li>Deep Syria roots — Samha family connections</li>
+        <li>Multi-child households → larger basket</li>
+        <li>Okaidi brand recognition among returning diaspora</li>
+        <li>Small store format (100–120 sqm) lowers CAPEX risk</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-w">
+      <h4>WEAKNESSES</h4>
+      <ul>
+        <li>Cash economy — limited digital payments</li>
+        <li>Small upper-middle class (~5%) at current incomes</li>
+        <li>Kids retail unfamiliar with formal brand experience</li>
+        <li>Profit repatriation challenges (improving)</li>
+        <li>Energy infrastructure — backup power required</li>
+        <li>Initial inventory and COGS structure TBD</li>
+        <li>Staff training to international kids retail standards</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-o">
+      <h4>OPPORTUNITIES</h4>
+      <ul>
+        <li>7–9M children under 15 with no formal retail</li>
+        <li>GDP growth ~10% 2026</li>
+        <li>Sanctions lifted — barriers removed</li>
+        <li>Returning diaspora expanding upper-middle class</li>
+        <li>Brand nostalgia: "the brands are coming back"</li>
+        <li>Visa deal → digital payments coming</li>
+        <li>Eid ×2 + wedding + back-to-school peaks</li>
+        <li>4 cities mapped for expansion</li>
+      </ul>
+    </div>
+    <div class="swot-cell swot-t">
+      <h4>THREATS</h4>
+      <ul>
+        <li>SYP currency volatility (60% band in 2025)</li>
+        <li>Political instability — northeast tensions</li>
+        <li>Parallel imports from Turkey</li>
+        <li>Consumer purchasing power constraints</li>
+        <li>Customs/import bureaucracy</li>
+        <li>Energy disruptions</li>
+        <li>Competitor entry (Zara Kids/H&M may follow)</li>
+        <li>Property rights uncertainty</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 07. STORE LOCATIONS -->
+<!-- ============================================================ -->
+<div class="section" id="s07">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <h2>Store Locations</h2>
+  </div>
+
+  <div class="location-card">
+    <h4>Location 1 — Galleria Hijaz — Flagship Kids Store</h4>
+    <div class="location-badges">
+      <span class="badge b-low">120 sqm</span>
+      <span class="badge b-blue">Aug 2027</span>
+      <span class="badge" style="background:var(--gold-dim);color:var(--gold);">NDS-Owned</span>
+    </div>
+    <p>Mixed-use development — multi-level retail mall + attached Mövenpick 5-star hotel (156+ rooms) + 3 levels parking. Okaidi occupies dedicated 120 sqm zone on kids floor in Phase 1 build-out.</p>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Nearby Landmark</th><th>Distance</th></tr>
+      <tr><td>Old City / Souk al-Hamidiyah / The Citadel</td><td>6-minute walk</td></tr>
+      <tr><td>Four Seasons Hotel</td><td>6-minute walk</td></tr>
+      <tr><td>Umayyad Square</td><td>4-minute drive</td></tr>
+      <tr><td>Damascus University</td><td>~10-minute walk</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="location-card">
+    <h4>Location 2 — Abu Remaneh Street — High Street Standalone</h4>
+    <div class="location-badges">
+      <span class="badge b-low">100 sqm</span>
+      <span class="badge b-blue">Aug 2028</span>
+      <span class="badge" style="background:var(--gold-dim);color:var(--gold);">Standalone</span>
+    </div>
+    <p>First shopping street in Syria — synonymous with retail excellence. Highest foot traffic in Damascus.</p>
+  </div>
+
+  <h3>Locations 3–6: National Roll-Out</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>City</th><th>Opening</th><th>Format</th><th>Strategic Rationale</th></tr>
+    <tr><td>Homs</td><td>Feb 2029</td><td>100 sqm Standalone</td><td>3rd largest city; central Syria hub</td></tr>
+    <tr><td>Tartous</td><td>Aug 2029</td><td>100 sqm Standalone</td><td>Coastal; diaspora gateway port</td></tr>
+    <tr><td>Latakia</td><td>Feb 2030</td><td>100 sqm Standalone</td><td>Mediterranean coast; tourism + diaspora</td></tr>
+    <tr><td>Kafarsosah (Damascus)</td><td>Aug 2030</td><td>100 sqm Standalone</td><td>Affluent suburb; high-density young families</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 08. ROLL-OUT PLAN -->
+<!-- ============================================================ -->
+<div class="section" id="s08">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <h2>Roll-Out Plan</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-value">6 Stores</div>
+      <div class="card-label">4 Cities, 620 sqm</div>
+    </div>
+    <div class="card">
+      <div class="card-value">$2.55M</div>
+      <div class="card-label">Revenue at Maturity</div>
+      <div class="card-sub">2031 annual run-rate</div>
+    </div>
+    <div class="card">
+      <div class="card-value">Aug 2027</div>
+      <div class="card-label">First Opening</div>
+    </div>
+    <div class="card">
+      <div class="card-value">$994K</div>
+      <div class="card-label">Total Network CAPEX</div>
+    </div>
+  </div>
+
+  <h3>Store-by-Store Roll-Out</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>#</th><th>Line</th><th>Location</th><th>City</th><th>Opening</th><th>SQM</th><th>Type</th><th>Rev. @ Maturity</th><th>Rev/SQM</th></tr>
+    <tr class="row-highlight"><td>1</td><td>Kids</td><td>Galleria Hijaz</td><td>Damascus</td><td>Aug 2027</td><td>120</td><td>Mall</td><td>$577,500</td><td>$4,813</td></tr>
+    <tr><td>2</td><td>Kids</td><td>Abu Remaneh St</td><td>Damascus</td><td>Aug 2028</td><td>100</td><td>Standalone</td><td>$495,000</td><td>$4,950</td></tr>
+    <tr><td>3</td><td>Kids</td><td>TBD</td><td>Homs</td><td>Feb 2029</td><td>100</td><td>Standalone</td><td>$346,500</td><td>$3,465</td></tr>
+    <tr><td>4</td><td>Kids</td><td>TBD</td><td>Tartous</td><td>Aug 2029</td><td>100</td><td>Standalone</td><td>$396,000</td><td>$3,960</td></tr>
+    <tr><td>5</td><td>Kids</td><td>TBD</td><td>Latakia</td><td>Feb 2030</td><td>100</td><td>Standalone</td><td>$321,750</td><td>$3,218</td></tr>
+    <tr><td>6</td><td>Kids</td><td>Kafarsosah</td><td>Damascus</td><td>Aug 2030</td><td>100</td><td>Standalone</td><td>$495,000</td><td>$4,950</td></tr>
+    <tr class="row-highlight"><td></td><td></td><td><strong>TOTAL</strong></td><td></td><td></td><td><strong>620</strong></td><td></td><td><strong>$2,631,750</strong></td><td><strong>$4,245</strong></td></tr>
+  </table>
+  </div>
+
+  <h3>Network Revenue Build-Up</h3>
+  <div class="chart-container">
+    <canvas id="revenueBuildup"></canvas>
+    <div class="chart-source">Ramp assumptions: 60% in opening year, 90% in Year 2, 100% in Year 3+.</div>
+  </div>
+
+  <h3>Roll-Out Timeline — Store Size & Cumulative Stores</h3>
+  <div class="chart-container">
+    <canvas id="rolloutChart"></canvas>
+    <div class="chart-source">6-store kids network: Aug 2027 → Aug 2030 — 4 cities, 620 sqm total</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 09. SUPPLY CHAIN & LOGISTICS -->
+<!-- ============================================================ -->
+<div class="section" id="s09">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <h2>Supply Chain &amp; Logistics</h2>
+  </div>
+
+  <p>Okaidi's supply chain leverages its established European hubs and Turkish manufacturing network. Primary import route is Turkey → Syria by road, taking advantage of Okaidi's Turkey operations and the Bab al-Hawa/Bab al-Salameh crossings.</p>
+
+  <h3>Import Routes</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Route</th><th>Transit Time</th><th>Cost</th><th>Reliability</th><th>Notes</th></tr>
+    <tr class="row-highlight"><td>Turkey → Syria (road)</td><td>1–3 days</td><td>Low</td><td>Good</td><td>Primary. Bab al-Hawa / Bab al-Salameh</td></tr>
+    <tr><td>Sea via Latakia port</td><td>5–10 days</td><td>Low (bulk)</td><td>Moderate</td><td>Seasonal bulk shipments</td></tr>
+    <tr><td>Jordan (Nassib crossing)</td><td>2–4 days</td><td>Medium</td><td>Good</td><td>Alternative land route</td></tr>
+    <tr><td>Lebanon</td><td>1–2 days</td><td>Medium</td><td>Variable</td><td>Backup</td></tr>
+    <tr><td>Direct from France HQ</td><td>10–14 days</td><td>Higher</td><td>Good</td><td>Sample / flagship lines only</td></tr>
+  </table>
+  </div>
+
+  <h3>Customs & Import Duties</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Item</th><th>Duty Range</th><th>Notes</th></tr>
+    <tr><td>Textile / Kids Apparel</td><td>30–35%</td><td>Estimated</td></tr>
+    <tr><td>Footwear (kids)</td><td>30–35%</td><td>Estimated</td></tr>
+    <tr><td>Accessories</td><td>30–35%</td><td>Estimated</td></tr>
+    <tr><td>Store fixtures (imported)</td><td>15–20%</td><td>Reduced for capital goods</td></tr>
+    <tr><td>IT / POS equipment</td><td>5–10%</td><td>Technology imports favored</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 10. FINANCIAL PROJECTIONS -->
+<!-- ============================================================ -->
+<div class="section" id="s10">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>Financial Projections</h2>
+  </div>
+
+  <h3>CAPEX per Store (USD)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Category</th><th>100 sqm</th><th>120 sqm</th><th>Notes</th></tr>
+    <tr><td>Store fit-out</td><td>$48,000</td><td>$57,600</td><td>$480/sqm</td></tr>
+    <tr><td>Furniture</td><td>$24,000</td><td>$28,800</td><td>$240/sqm</td></tr>
+    <tr><td>Shipping &amp; Clearance</td><td>$6,000</td><td>$7,200</td><td>$60/sqm</td></tr>
+    <tr><td>Initial inventory (2–3 months)</td><td>TBD</td><td>TBD</td><td>Pending Okaidi</td></tr>
+    <tr><td>IT / POS systems</td><td>$5,000</td><td>$5,000</td><td>Cash + basic card</td></tr>
+    <tr><td>Pre-opening costs</td><td>$10,000</td><td>$10,000</td><td>Marketing, recruitment, training</td></tr>
+    <tr><td>Working capital (3 months)</td><td>$70,000</td><td>$70,000</td><td>Cash buffer</td></tr>
+    <tr class="row-highlight"><td><strong>SUBTOTAL (excl. inventory)</strong></td><td><strong>$163,000</strong></td><td><strong>$178,600</strong></td><td></td></tr>
+  </table>
+  </div>
+
+  <h3>CAPEX Deployment Timeline</h3>
+  <div class="chart-container">
+    <canvas id="capexChart"></canvas>
+    <div class="chart-source">Total network CAPEX: $993,600 deployed across 4 years (excl. initial inventory)</div>
+  </div>
+
+  <h3>5-Year Network P&L — Revenue vs. OPEX (Base Case)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Metric</th><th>2027</th><th>2028</th><th>2029</th><th>2030</th><th>2031</th></tr>
+    <tr class="row-highlight"><td>Stores (year-end)</td><td>1</td><td>2</td><td>4</td><td>6</td><td>6</td></tr>
+    <tr class="row-highlight"><td><strong>Revenue</strong></td><td><strong>$144,375</strong></td><td><strong>$643,500</strong></td><td><strong>$1,312,575</strong></td><td><strong>$2,041,463</strong></td><td><strong>$2,550,075</strong></td></tr>
+    <tr><td>COGS</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
+    <tr><td>Staff costs (6 ppl/store)</td><td>$19,250</td><td>$65,450</td><td>$154,000</td><td>$246,400</td><td>$277,200</td></tr>
+    <tr><td>Rent (per-sqm)</td><td>$48,000</td><td>$155,200</td><td>$323,200</td><td>$496,200</td><td>$559,200</td></tr>
+    <tr><td>Utilities (~5%)</td><td>$7,219</td><td>$32,175</td><td>$65,629</td><td>$102,073</td><td>$127,504</td></tr>
+    <tr><td>Marketing (~2%)</td><td>$2,888</td><td>$12,870</td><td>$26,252</td><td>$40,829</td><td>$51,002</td></tr>
+    <tr><td>G&A (~7%)</td><td>$10,106</td><td>$45,045</td><td>$91,880</td><td>$142,902</td><td>$178,505</td></tr>
+    <tr class="row-highlight"><td><strong>TOTAL OPEX</strong></td><td><strong>$87,462</strong></td><td><strong>$310,740</strong></td><td><strong>$660,960</strong></td><td><strong>$1,028,405</strong></td><td><strong>$1,193,410</strong></td></tr>
+    <tr><td>OPEX % of Revenue</td><td>60.6%</td><td>48.3%</td><td>50.4%</td><td>50.4%</td><td>46.8%</td></tr>
+  </table>
+  </div>
+
+  <h3>Revenue vs. OPEX — 5-Year Network View</h3>
+  <div class="chart-container">
+    <canvas id="plChart"></canvas>
+    <div class="chart-source">Revenue ramp: 60% opening year, 90% Y2, 100% Y3+. Damascus rent $80/sqm/mo, other cities $70/sqm/mo.</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 11. UNIT ECONOMICS -->
+<!-- ============================================================ -->
+<div class="section" id="s11">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Unit Economics</h2>
+  </div>
+
+  <h3>Staffing Model — 120 sqm Store</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Role</th><th>Headcount</th><th>Monthly / Person</th><th>Annual Total</th></tr>
+    <tr><td>Store Manager</td><td>1</td><td>$1,000</td><td>$12,000</td></tr>
+    <tr><td>Cashier</td><td>1</td><td>$600</td><td>$7,200</td></tr>
+    <tr><td>Sales Associate</td><td>3</td><td>$500</td><td>$18,000</td></tr>
+    <tr><td>Visual Merchandiser</td><td>1</td><td>$750</td><td>$9,000</td></tr>
+    <tr class="row-highlight"><td><strong>TOTAL</strong></td><td><strong>6</strong></td><td><strong>$3,850</strong></td><td><strong>$46,200</strong></td></tr>
+  </table>
+  </div>
+
+  <h3>OPEX Structure — 120 sqm Damascus Store (Annual)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Line Item</th><th>USD</th><th>% of Revenue</th><th>Notes</th></tr>
+    <tr><td>Staff (6 FTE)</td><td>$46,200</td><td>8.1%</td><td>Mgr + Cashier + 3 Sales + VM</td></tr>
+    <tr><td>Rent (120 × $80 × 12)</td><td>$115,200</td><td>20.3%</td><td>Damascus rate $80/sqm/mo</td></tr>
+    <tr><td>Utilities &amp; operations</td><td>$28,392</td><td>5.0%</td><td>Linked to revenue</td></tr>
+    <tr><td>Marketing &amp; social</td><td>$11,357</td><td>2.0%</td><td>Instagram, local promotion</td></tr>
+    <tr><td>G&A allocation</td><td>$39,749</td><td>7.0%</td><td>HQ overhead share</td></tr>
+    <tr class="row-highlight"><td><strong>TOTAL OPEX</strong></td><td><strong>$240,898</strong></td><td><strong>42.4%</strong></td><td>Excluding COGS</td></tr>
+  </table>
+  </div>
+
+  <h3>OPEX Breakdown</h3>
+  <div class="chart-container">
+    <canvas id="opexDonut"></canvas>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 12. REVENUE SCENARIOS & SENSITIVITY -->
+<!-- ============================================================ -->
+<div class="section" id="s12">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h2>Revenue Scenarios &amp; Sensitivity</h2>
+  </div>
+
+  <h3>Revenue Scenarios — Single 120 sqm Store</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Metric</th><th>Conservative</th><th>Base Case</th><th>Optimistic</th></tr>
+    <tr><td>Daily footfall</td><td>300</td><td><strong>325</strong></td><td>350</td></tr>
+    <tr><td>Conversion rate</td><td>14%</td><td><strong>16%</strong></td><td>18%</td></tr>
+    <tr><td>ATV (USD)</td><td>$33</td><td><strong>$35</strong></td><td>$37</td></tr>
+    <tr><td>Daily revenue</td><td>$1,386</td><td><strong>$1,820</strong></td><td>$2,331</td></tr>
+    <tr><td>Monthly revenue</td><td>$36,036</td><td><strong>$47,320</strong></td><td>$60,606</td></tr>
+    <tr class="row-highlight"><td><strong>Annual revenue</strong></td><td><strong>$432,432</strong></td><td><strong>$567,840</strong></td><td><strong>$727,272</strong></td></tr>
+  </table>
+  </div>
+
+  <h3>Annual Revenue — Scenario Comparison</h3>
+  <div class="chart-container">
+    <canvas id="revenueScenarios"></canvas>
+  </div>
+
+  <h3>EBITDA Sensitivity by Gross Margin</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Scenario</th><th>GM 50%</th><th>GM 55%</th><th>GM 60%</th></tr>
+    <tr><td>Conservative</td><td style="color:var(--red);">−$6K</td><td>$16K</td><td>$38K</td></tr>
+    <tr class="row-highlight"><td><strong>Base Case</strong></td><td><strong>$43K</strong></td><td><strong>$71K</strong></td><td><strong>$100K</strong></td></tr>
+    <tr><td>Optimistic</td><td>$100K</td><td>$137K</td><td>$173K</td></tr>
+  </table>
+  </div>
+
+  <h3>EBITDA Sensitivity — Grouped View</h3>
+  <div class="chart-container">
+    <canvas id="ebitdaSensitivity"></canvas>
+  </div>
+
+  <h3>CAPEX Payback — 120 sqm Store ($178,600)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Gross Margin</th><th>Conservative</th><th>Base Case</th><th>Optimistic</th></tr>
+    <tr><td>GM = 50%</td><td style="color:var(--red);">N/A (neg. EBITDA)</td><td>4.15 years</td><td>1.78 years</td></tr>
+    <tr class="row-highlight"><td><strong>GM = 55%</strong></td><td>11.23 years</td><td><strong>2.50 years</strong></td><td>1.31 years</td></tr>
+    <tr><td>GM = 60%</td><td>4.76 years</td><td>1.79 years</td><td>1.03 years</td></tr>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>At Base Case revenue and 55% gross margin,</strong> a single 120 sqm Damascus store generates ~$71K annual EBITDA (12.6% margin) with payback in ~2.5 years.</p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 13. RISK ASSESSMENT -->
+<!-- ============================================================ -->
+<div class="section" id="s13">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h2>Risk Assessment</h2>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Risk</th><th>Severity</th><th>Trend</th><th>Mitigation</th></tr>
+    <tr><td>Currency fluctuation</td><td><span class="badge b-high">HIGH</span></td><td>Improving</td><td>USD-denominated leases, price adjustments</td></tr>
+    <tr><td>Banking &amp; payments</td><td><span class="badge b-high">HIGH</span></td><td>Improving fast</td><td>Cash-first POS, Turkish/UAE banking</td></tr>
+    <tr><td>Initial inventory uncertainty</td><td><span class="badge b-mod">MOD-HIGH</span></td><td>Pending</td><td>Awaiting Okaidi; phased roll-out</td></tr>
+    <tr><td>Energy disruptions</td><td><span class="badge b-mod">MOD-HIGH</span></td><td>Stable</td><td>Backup generators, mall power</td></tr>
+    <tr><td>Customs / import</td><td><span class="badge b-mod">MODERATE</span></td><td>Improving</td><td>Local broker, bonded warehouse</td></tr>
+    <tr><td>Logistics</td><td><span class="badge b-mod">MODERATE</span></td><td>Improving</td><td>Turkey hub leverages Okaidi ops</td></tr>
+    <tr><td>Political stability</td><td><span class="badge b-mod">MODERATE</span></td><td>Improving</td><td>Damascus/coast stable</td></tr>
+    <tr><td>Parallel imports</td><td><span class="badge b-mod">MODERATE</span></td><td>Persistent</td><td>Exclusive lines, store experience</td></tr>
+    <tr><td>Sanctions (residual)</td><td><span class="badge b-low">LOW</span></td><td>Resolved</td><td>Due diligence</td></tr>
+    <tr><td>Staffing</td><td><span class="badge b-low">LOW</span></td><td>Positive</td><td>Large talent pool</td></tr>
+    <tr><td>Landlord risk</td><td><span class="badge b-low">LOW</span></td><td>✓ Eliminated</td><td>NDS owns Galleria Hijaz</td></tr>
+  </table>
+  </div>
+
+  <h3>Risk Severity vs. Improvement Trend</h3>
+  <div class="chart-container">
+    <canvas id="riskChart"></canvas>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 14. IMPLEMENTATION TIMELINE -->
+<!-- ============================================================ -->
+<div class="section" id="s14">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <h2>Implementation Timeline</h2>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Phase</th><th>Period</th><th>Actions</th><th>Milestone</th></tr>
+    <tr><td><strong>1. Agree</strong></td><td>Q3 2026 – Q1 2027</td><td>Franchise agreement finalized. Store design approved. Initial inventory cost confirmed.</td><td>Contract signed</td></tr>
+    <tr><td><strong>2. Build</strong></td><td>Q2–Q3 2027</td><td>Galleria Hijaz fit-out. Staff recruitment &amp; Okaidi training. Initial stock via Turkey.</td><td>Store ready</td></tr>
+    <tr class="row-highlight"><td><strong>3. Launch</strong></td><td>Aug 2027</td><td>Grand opening — Okaidi Kids at Galleria Hijaz. 120 sqm.</td><td>Store 1 open</td></tr>
+    <tr><td><strong>4. Establish</strong></td><td>Q4 2027 – Q2 2028</td><td>Stabilize ops, build brand, launch Instagram strategy targeting moms.</td><td>Break-even target</td></tr>
+    <tr><td><strong>5. Expand Damascus</strong></td><td>Aug 2028</td><td>Abu Remaneh Street standalone. 100 sqm.</td><td>Store 2 open</td></tr>
+    <tr><td><strong>6. Scale Phase 1</strong></td><td>Feb–Aug 2029</td><td>Homs + Tartous standalone openings.</td><td>Stores 3–4 open</td></tr>
+    <tr><td><strong>7. Complete Network</strong></td><td>Feb–Aug 2030</td><td>Latakia + Kafarsosah openings.</td><td>Full 6-store network</td></tr>
+    <tr class="row-highlight"><td><strong>8. Maturity</strong></td><td>2031+</td><td>Full-year maturity. Consider Aleppo, Daraa.</td><td>$2.55M run-rate</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 15. SOURCES & REFERENCES -->
+<!-- ============================================================ -->
+<div class="section" id="s15">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <h2>Sources &amp; References</h2>
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>#</th><th>Source</th><th>Used For</th></tr>
+    <tr><td>1</td><td>World Bank — Syria Macro Fiscal Assessment (July 2025)</td><td>GDP, GNI, poverty data</td></tr>
+    <tr><td>2</td><td>Reuters — "Syria's growth accelerates as sanctions ease" (Dec 2025)</td><td>Recovery trajectory</td></tr>
+    <tr><td>3</td><td>EU Council — Sanctions lifting legal acts (May 2025)</td><td>Sanctions status</td></tr>
+    <tr><td>4</td><td>US Treasury / OFAC — General License 25 (May 2025)</td><td>US sanctions</td></tr>
+    <tr><td>5</td><td>White &amp; Case / Sidley Austin / Mayer Brown — Syria sanctions analysis</td><td>Legal framework</td></tr>
+    <tr><td>6</td><td>Central Bank of Syria — Currency reform, Visa agreement (2025–26)</td><td>Banking, currency</td></tr>
+    <tr><td>7</td><td>Syria Report / Syria Direct — Exchange rate tracking (2025)</td><td>FX data</td></tr>
+    <tr><td>8</td><td>FocusEconomics — Syria economic indicators</td><td>Historical inflation</td></tr>
+    <tr><td>9</td><td>UN Population Division / World Population Review</td><td>Demographics</td></tr>
+    <tr><td>10</td><td>IOM — Syria displacement &amp; poverty data</td><td>Consumer analysis</td></tr>
+    <tr><td>11</td><td>Okaidi / ÏDKIDS Group — Brand and product information</td><td>Brand benchmarks</td></tr>
+    <tr><td>12</td><td>Mango Syria — Market Study &amp; Business Plan, NDS Investment (Apr 2026)</td><td>Reference structure, macro framework</td></tr>
+    <tr><td>13</td><td>ASBC — Syria Customs Tariff 2026</td><td>Import duties</td></tr>
+    <tr><td>14</td><td>Atlantic Council — Syria economic outlook (Jan 2026)</td><td>Macro context</td></tr>
+    <tr><td>15</td><td>Internal NDS / Samha Group — Okaidi Feasibility Draft (May 2026)</td><td>CAPEX, staffing, revenue inputs</td></tr>
+    <tr><td>16</td><td>On-ground retail surveys, social media pricing (2025–2026)</td><td>Competitive pricing</td></tr>
+    <tr><td>17</td><td>PeaceRep — "From Cash to Code: Payment Rails in Syria" (Dec 2025)</td><td>Banking/payments</td></tr>
+  </table>
+  </div>
+
+  <div style="margin-top:60px; padding-top:30px; border-top:1px solid var(--border);">
+    <p style="color:var(--text3); font-size:13px;">
+      <strong style="color:var(--text2);">Prepared by NDS Investment / Samha Group — May 2026 (v2)</strong><br><br>
+      Financial projections reflect: Fit-out $480/sqm + Furniture $240/sqm + Shipping $60/sqm (total $780/sqm) · Working capital $70K/store · Rent $80/sqm Damascus, $70 other cities · Staffing 6 FTE/store ($46,200/yr) · Utilities 5%, G&A 7% · Revenue scenarios: footfall 300/325/350, conversion 14%/16%/18%, ATV $33/$35/$37 · Customs duties 30–35%.<br><br>
+      <strong style="color:var(--orange);">Open items pending Okaidi confirmation:</strong> Initial inventory cost, COGS structure, and franchise royalty terms.<br><br>
+      <em>Confidential — For internal use and Okaidi franchise review.</em>
+    </p>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<script>
+// ==========================================
+// CHART SETUP
+// ==========================================
+const gold = '#c8a96e';
+const goldLight = 'rgba(200,169,110,0.15)';
+const white = '#e0e0e0';
+const red = '#f87171';
+const green = '#4ade80';
+const blue = '#60a5fa';
+const orange = '#fb923c';
+const purple = '#a78bfa';
+
+Chart.defaults.color = '#999';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+Chart.defaults.font.family = "'Inter', sans-serif";
+
+// ==========================================
+// 01. MACRO ECONOMY
+// ==========================================
+
+// GDP CHART
+new Chart(document.getElementById('gdpChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025e', '2026p'],
+    datasets: [{
+      label: 'GDP Growth %',
+      data: [3.4, -30, -20, -15, -10, -5, -3, 0, 1.5, -2, -3, 1.2, 2, -1, -1.5, 5, 10],
+      backgroundColor: ctx => ctx.raw >= 0 ? 'rgba(74,222,128,0.4)' : 'rgba(248,113,113,0.4)',
+      borderColor: ctx => ctx.raw >= 0 ? green : red,
+      borderWidth: 1,
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false }, title: { display: true, text: 'Syria GDP Growth (%, Annual) — 2026 projection: ~10%', color: white, font: { size: 14, weight: 600 } } },
+    scales: {
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => v + '%' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// INFLATION CHART
+new Chart(document.getElementById('inflationChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2020', '2021', '2022', '2023', '2024', '2025e', '2026p'],
+    datasets: [{
+      label: 'Inflation %',
+      data: [36, 28, 22, 117, 57, 11, 7],
+      backgroundColor: ctx => ctx.raw > 50 ? 'rgba(248,113,113,0.5)' : ctx.raw > 20 ? 'rgba(251,146,60,0.5)' : 'rgba(74,222,128,0.4)',
+      borderColor: ctx => ctx.raw > 50 ? red : ctx.raw > 20 ? orange : green,
+      borderWidth: 1,
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => v + '%' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// FX CHART
+new Chart(document.getElementById('fxChart'), {
+  type: 'line',
+  data: {
+    labels: ['2010','2012','2014','2016','2018','2020','2022','2024','Late 2025','Q1 2026'],
+    datasets: [{
+      label: 'SYP per USD (old)',
+      data: [47, 100, 200, 500, 500, 2500, 4500, 14750, 12000, 11500],
+      borderColor: gold,
+      backgroundColor: goldLight,
+      fill: true,
+      tension: 0.3,
+      pointRadius: 4,
+      pointBackgroundColor: gold
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => v.toLocaleString() } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ==========================================
+// 02. DEMOGRAPHICS
+// ==========================================
+
+// POPULATION BY CITY
+new Chart(document.getElementById('popChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Damascus Metro', 'Aleppo Metro', 'Homs Metro', 'Lattakia Metro', 'Tartous'],
+    datasets: [{
+      label: 'Population (millions)',
+      data: [2.92, 2.56, 1.63, 0.801, 0.5],
+      backgroundColor: [gold, 'rgba(200,169,110,0.7)', 'rgba(200,169,110,0.5)', 'rgba(200,169,110,0.35)', 'rgba(200,169,110,0.25)'],
+      borderColor: gold,
+      borderWidth: 1,
+      borderRadius: 6
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false }, title: { display: true, text: 'Damascus: 2.92M (UN 2026) — Syria total 19–23M', color: white, font: { size: 13, weight: 500 } } },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => v + 'M' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// AGE DISTRIBUTION
+new Chart(document.getElementById('ageChart'), {
+  type: 'bar',
+  data: {
+    labels: ['0–14', '15–24', '25–34', '35–44', '45–54', '55–64', '65+'],
+    datasets: [
+      { label: 'Syria', data: [40, 18, 16, 12, 7, 4, 3], backgroundColor: 'rgba(200,169,110,0.6)', borderColor: gold, borderWidth: 1, borderRadius: 4 },
+      { label: 'UAE', data: [13, 12, 28, 24, 14, 6, 3], backgroundColor: 'rgba(96,165,250,0.3)', borderColor: blue, borderWidth: 1, borderRadius: 4 },
+      { label: 'Turkey', data: [23, 16, 16, 14, 12, 10, 9], backgroundColor: 'rgba(167,139,250,0.3)', borderColor: purple, borderWidth: 1, borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom' }, title: { display: true, text: 'Age Distribution (% of Population) — Syria: ~40% under 15', color: white, font: { size: 14, weight: 600 } } },
+    scales: {
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => v + '%' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ==========================================
+// 03. BRAND PRESENCE (zero chart)
+// ==========================================
+new Chart(document.getElementById('brandPresenceChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Okaidi\n→ FIRST', 'Mothercare', 'Zara Kids', 'H&M Kids', 'LC Waikiki\nKids', 'DeFacto\nKids', "Carter's"],
+    datasets: [{
+      label: 'Official Stores in Syria',
+      data: [0, 0, 0, 0, 0, 0, 0],
+      backgroundColor: ['rgba(200,169,110,0.4)', 'rgba(248,113,113,0.3)', 'rgba(248,113,113,0.3)', 'rgba(248,113,113,0.3)', 'rgba(248,113,113,0.3)', 'rgba(248,113,113,0.3)', 'rgba(248,113,113,0.3)'],
+      borderColor: [gold, red, red, red, red, red, red],
+      borderWidth: 2,
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 0, max: 5, grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { stepSize: 1 } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ==========================================
+// 04. SEASONAL REVENUE INDEX
+// ==========================================
+new Chart(document.getElementById('seasonChart'), {
+  type: 'line',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    datasets: [{
+      label: 'Revenue Index (100 = average)',
+      data: [85, 90, 100, 120, 140, 110, 100, 115, 130, 95, 90, 125],
+      borderColor: gold,
+      backgroundColor: goldLight,
+      fill: true,
+      tension: 0.4,
+      pointRadius: 5,
+      pointBackgroundColor: ctx => {
+        const v = ctx.raw;
+        return v >= 130 ? red : v >= 120 ? orange : gold;
+      }
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false }, title: { display: true, text: 'Seasonal Revenue Index — Eid (May), Back-to-School (Sep), Year-End (Dec) peaks', color: white, font: { size: 13, weight: 500 } } },
+    scales: {
+      y: { min: 60, max: 160, grid: { color: 'rgba(255,255,255,0.04)' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ==========================================
+// 08. ROLL-OUT CHARTS
+// ==========================================
+
+// REVENUE BUILD-UP
+new Chart(document.getElementById('revenueBuildup'), {
+  type: 'bar',
+  data: {
+    labels: ['2027', '2028', '2029', '2030', '2031'],
+    datasets: [{
+      label: 'Network Revenue ($K)',
+      data: [144, 644, 1310, 2041, 2550],
+      backgroundColor: [
+        'rgba(200,169,110,0.3)',
+        'rgba(200,169,110,0.45)',
+        'rgba(200,169,110,0.6)',
+        'rgba(200,169,110,0.75)',
+        gold
+      ],
+      borderColor: gold,
+      borderWidth: 1,
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false }, title: { display: true, text: 'Network Revenue Build-Up ($K) — Maturity $2.55M in 2031', color: white, font: { size: 14, weight: 600 } } },
+    scales: {
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => '$' + v + 'K' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ROLLOUT CHART
+new Chart(document.getElementById('rolloutChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Store 1\nAug 2027\nGalleria Hijaz', 'Store 2\nAug 2028\nAbu Remaneh', 'Store 3\nFeb 2029\nHoms', 'Store 4\nAug 2029\nTartous', 'Store 5\nFeb 2030\nLatakia', 'Store 6\nAug 2030\nKafarsosah'],
+    datasets: [
+      {
+        label: 'Store Size (sqm)',
+        data: [120, 100, 100, 100, 100, 100],
+        backgroundColor: [gold, 'rgba(200,169,110,0.8)', 'rgba(200,169,110,0.65)', 'rgba(200,169,110,0.55)', 'rgba(200,169,110,0.45)', 'rgba(200,169,110,0.35)'],
+        borderColor: gold,
+        borderWidth: 1,
+        borderRadius: 6
+      },
+      {
+        label: 'Cumulative Stores',
+        data: [1, 2, 3, 4, 5, 6],
+        backgroundColor: 'rgba(96,165,250,0.3)',
+        borderColor: blue,
+        borderWidth: 1,
+        borderRadius: 6,
+        yAxisID: 'y1'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom' }, title: { display: true, text: '6-Store Rollout: Aug 2027 → Aug 2030 — 4 Cities, 620 sqm', color: white, font: { size: 14, weight: 600 } } },
+    scales: {
+      y: { position: 'left', grid: { color: 'rgba(255,255,255,0.04)' }, title: { display: true, text: 'Store Size (sqm)', color: '#999' } },
+      y1: { position: 'right', grid: { display: false }, title: { display: true, text: 'Cumulative Stores', color: '#999' }, min: 0, max: 7 },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ==========================================
+// 10. FINANCIAL CHARTS
+// ==========================================
+
+// CAPEX CHART
+new Chart(document.getElementById('capexChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2027', '2028', '2029', '2030'],
+    datasets: [
+      {
+        label: 'CAPEX Deployed ($K)',
+        data: [178.6, 163, 326, 326],
+        backgroundColor: 'rgba(200,169,110,0.5)',
+        borderColor: gold,
+        borderWidth: 1,
+        borderRadius: 6
+      },
+      {
+        label: 'Cumulative ($K)',
+        data: [178.6, 341.6, 667.6, 993.6],
+        type: 'line',
+        borderColor: blue,
+        backgroundColor: 'rgba(96,165,250,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 5,
+        pointBackgroundColor: blue,
+        yAxisID: 'y1'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom' }, title: { display: true, text: 'Network CAPEX Deployment — Total $993.6K', color: white, font: { size: 14, weight: 600 } } },
+    scales: {
+      y: { position: 'left', grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => '$' + v + 'K' }, title: { display: true, text: 'Annual', color: '#999' } },
+      y1: { position: 'right', grid: { display: false }, ticks: { callback: v => '$' + v + 'K' }, title: { display: true, text: 'Cumulative', color: '#999' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// P&L CHART
+new Chart(document.getElementById('plChart'), {
+  type: 'line',
+  data: {
+    labels: ['2027', '2028', '2029', '2030', '2031'],
+    datasets: [
+      {
+        label: 'Revenue',
+        data: [144375, 643500, 1312575, 2041463, 2550075],
+        borderColor: gold,
+        backgroundColor: goldLight,
+        fill: true,
+        tension: 0.3,
+        pointRadius: 5,
+        pointBackgroundColor: gold
+      },
+      {
+        label: 'Total OPEX',
+        data: [87462, 310740, 660960, 1028405, 1193410],
+        borderColor: red,
+        backgroundColor: 'rgba(248,113,113,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 5,
+        pointBackgroundColor: red
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom' }, title: { display: true, text: 'Revenue vs. OPEX — 5-Year Network View', color: white, font: { size: 14, weight: 600 } } },
+    scales: {
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ==========================================
+// 11. UNIT ECONOMICS — OPEX DONUT
+// ==========================================
+new Chart(document.getElementById('opexDonut'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Staff — $46.2K (8.1%)', 'Rent — $115.2K (20.3%)', 'Utilities — $28.4K (5.0%)', 'Marketing — $11.4K (2.0%)', 'G&A — $39.7K (7.0%)'],
+    datasets: [{
+      data: [46200, 115200, 28392, 11357, 39749],
+      backgroundColor: [gold, 'rgba(96,165,250,0.5)', 'rgba(251,146,60,0.5)', 'rgba(167,139,250,0.5)', 'rgba(74,222,128,0.4)'],
+      borderColor: '#141414',
+      borderWidth: 3
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16 } },
+      title: { display: true, text: 'OPEX Breakdown — 120 sqm Damascus Store ($240.9K/yr, 42.4% of revenue)', color: white, font: { size: 14, weight: 600 } }
+    }
+  }
+});
+
+// ==========================================
+// 12. REVENUE SCENARIOS & SENSITIVITY
+// ==========================================
+
+// REVENUE SCENARIOS BAR
+new Chart(document.getElementById('revenueScenarios'), {
+  type: 'bar',
+  data: {
+    labels: ['Conservative', 'Base Case', 'Optimistic'],
+    datasets: [{
+      label: 'Annual Revenue ($K)',
+      data: [432, 568, 727],
+      backgroundColor: ['rgba(251,146,60,0.4)', gold, 'rgba(74,222,128,0.4)'],
+      borderColor: [orange, gold, green],
+      borderWidth: 2,
+      borderRadius: 8
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false }, title: { display: true, text: 'Annual Revenue per Store (120 sqm) — Scenario Comparison', color: white, font: { size: 14, weight: 600 } } },
+    scales: {
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => '$' + v + 'K' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// EBITDA SENSITIVITY GROUPED BAR
+new Chart(document.getElementById('ebitdaSensitivity'), {
+  type: 'bar',
+  data: {
+    labels: ['GM 50%', 'GM 55%', 'GM 60%'],
+    datasets: [
+      {
+        label: 'Conservative',
+        data: [-6, 16, 38],
+        backgroundColor: 'rgba(251,146,60,0.4)',
+        borderColor: orange,
+        borderWidth: 1,
+        borderRadius: 4
+      },
+      {
+        label: 'Base Case',
+        data: [43, 71, 100],
+        backgroundColor: 'rgba(200,169,110,0.5)',
+        borderColor: gold,
+        borderWidth: 1,
+        borderRadius: 4
+      },
+      {
+        label: 'Optimistic',
+        data: [100, 137, 173],
+        backgroundColor: 'rgba(74,222,128,0.4)',
+        borderColor: green,
+        borderWidth: 1,
+        borderRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom' }, title: { display: true, text: 'EBITDA Sensitivity ($K) — by Gross Margin & Revenue Scenario', color: white, font: { size: 14, weight: 600 } } },
+    scales: {
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => '$' + v + 'K' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ==========================================
+// 13. RISK CHART
+// ==========================================
+new Chart(document.getElementById('riskChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Currency/FX', 'Banking', 'Inventory\nUncertainty', 'Energy', 'Customs', 'Logistics', 'Political', 'Parallel\nImports', 'Sanctions', 'Staffing', 'Landlord'],
+    datasets: [
+      {
+        label: 'Severity (10=highest)',
+        data: [8, 7.5, 6.5, 6, 5, 5, 5, 5, 2, 2, 1],
+        backgroundColor: ctx => { const v = ctx.raw; return v >= 7 ? 'rgba(248,113,113,0.5)' : v >= 4 ? 'rgba(251,146,60,0.4)' : 'rgba(74,222,128,0.4)'; },
+        borderRadius: 4
+      },
+      {
+        label: 'Improvement Trend (10=best)',
+        data: [6, 7, 4, 5, 6, 7, 6, 4, 9, 8, 10],
+        backgroundColor: 'rgba(74,222,128,0.15)',
+        borderColor: green,
+        borderWidth: 1,
+        borderRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom' }, title: { display: true, text: 'Risk Severity vs. Improvement Trend', color: white, font: { size: 14, weight: 600 } } },
+    scales: {
+      y: { min: 0, max: 10, grid: { color: 'rgba(255,255,255,0.04)' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ==========================================
+// NAV — MOBILE & ACTIVE HIGHLIGHT
+// ==========================================
+(function() {
+  const nav = document.getElementById('navSidebar');
+  const overlay = document.getElementById('navOverlay');
+  const toggle = document.getElementById('navToggle');
+  const close = document.getElementById('navClose');
+  
+  function openNav() { nav.classList.add('open'); overlay.classList.add('active'); }
+  function closeNav() { nav.classList.remove('open'); overlay.classList.remove('active'); }
+  
+  toggle.addEventListener('click', openNav);
+  close.addEventListener('click', closeNav);
+  overlay.addEventListener('click', closeNav);
+  
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav a[href^="#"]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector('.nav a[href="#' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+})();
+</script>
+
+</body>
+</html>
